@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora de Ley del Coseno y Seno</title>
+</head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#inicio">Inicio -</a></li>
+          <li><a href="#tutores"> Nuestros Tutores -</a></li>
+          <li><a href="#contacto"> Contacto </a></li>
+        </ul>
+      </nav>
+      <a href="#registro" class="cta-button">¡Regístrate Ahora!</a>
+    </header>  
+  <style>
+    header {
+    background-color: #f9f9f9;
+    padding: 20px;
+    text-align: center;
+  }
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-right: 10px;
+  }
+  
+  nav ul li a {
+    color: #333;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background-color: #ff0000;
+    color: #fff;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 4px;
+  }
+    body {
+      font-family: Arial, sans-serif;
+      color: #1d1616c0;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f1f1f1;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #ff0000;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ff0000;
+    }
+
+    #procedimiento {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .step {
+      margin-bottom: 10px;
+    }
+    footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  </style>
+
+  <script>
+    function calcularLeyCoseno() {
+      var ladoA = parseFloat(document.getElementById('ladoA').value);
+      var ladoB = parseFloat(document.getElementById('ladoB').value);
+      var anguloC = parseFloat(document.getElementById('anguloC').value);
+
+      var procedimiento = document.getElementById('procedimiento');
+      procedimiento.innerHTML = ""; 
+
+      
+      procedimiento.innerHTML += "<div class='step'>Datos ingresados:<br>"
+        + "Lado A: " + ladoA + "<br>"
+        + "Lado B: " + ladoB + "<br>"
+        + "Ángulo C: " + anguloC + " grados</div>";
+
+      
+      var ladoC = Math.sqrt(Math.pow(ladoA, 2) + Math.pow(ladoB, 2) - 2 * ladoA * ladoB * Math.cos(anguloC * Math.PI / 180));
+      procedimiento.innerHTML += "<div class='step'>Paso 2: Calcular el lado C usando la fórmula de la Ley del Coseno:<br>"
+        + "Lado C = √(Lado A² + Lado B² - 2 * Lado A * Lado B * cos(Ángulo C))<br>"
+        + "Lado C = √(" + ladoA + "² + " + ladoB + "² - 2 * " + ladoA + " * " + ladoB + " * cos(" + anguloC + "°))<br>"
+        + "Lado C = " + ladoC.toFixed(2) + "</div>";
+    }
+
+    function calcularLeySeno() {
+      var anguloA = parseFloat(document.getElementById('anguloA').value);
+      var anguloB = parseFloat(document.getElementById('anguloB').value);
+      var ladoA = parseFloat(document.getElementById('ladoA').value);
+
+      var procedimiento = document.getElementById('procedimiento');
+      procedimiento.innerHTML = ""; 
+
+      
+      procedimiento.innerHTML += "<div class='step'>Datos ingresados:<br>"
+        + "Ángulo A: " + anguloA + " grados<br>"
+        + "Ángulo B: " + anguloB + " grados<br>"
+        + "Lado A: " + ladoA + "</div>";
+
+      
+      var ladoB = (ladoA * Math.sin(anguloB * Math.PI / 180)) / Math.sin(anguloA * Math.PI / 180);
+      procedimiento.innerHTML += "<div class='step'>Paso 2: Calcular el lado B usando la fórmula de la Ley del Seno:<br>"
+        + "Lado B = (Lado A * sin(Ángulo B)) / sin(Ángulo A)<br>"
+        + "Lado B = (" + ladoA + " * sin(" + anguloB + "°)) / sin(" + anguloA + "°)<br>"
+        + "Lado B = " + ladoB.toFixed(2) + "</div>";
+    }
+  </script>
+</head>
+<body>
+  <h1>Calculadora de Ley del Coseno y Seno</h1>
+
+  <div class="container">
+    <h3>Ley del Coseno:</h3>
+    <label for="ladoA">Lado A:</label>
+    <input type="text" id="ladoA"><br><br>
+    <label for="ladoB">Lado B:</label>
+    <input type="text" id="ladoB"><br><br>
+    <label for="anguloC">Ángulo C (en grados):</label>
+    <input type="text" id="anguloC"><br><br>
+    <button onclick="calcularLeyCoseno()">Calcular Lado C</button>
+
+    <h3>Ley del Seno:</h3>
+    <label for="anguloA">Ángulo A (en grados):</label>
+    <input type="text" id="anguloA"><br><br>
+    <label for="anguloB">Ángulo B (en grados):</label>
+    <input type="text" id="anguloB"><br><br>
+    <label for="ladoA">Lado A:</label>
+    <input type="text" id="ladoA"><br><br>
+    <button onclick="calcularLeySeno()">Calcular Lado B</button>
+
+    <div id="procedimiento"></div>
+  </div>
+  <footer>
+    <p>&copy; 2023 Calculadora Seno y Coseno - Calculo Rapido</p>
+  </footer>
+</body>
+</html>
